@@ -141,7 +141,7 @@ setInterval(() => {
         second2 = 60
     }
 
-}, 1000)
+}, 1)
 
 
 let minutes = document.querySelector('#minutes')
@@ -154,17 +154,39 @@ setInterval(() => {
     if (minutes2 === 0) {
         minutes2 = 60
     }
-}, 1000)
+    let hours = document.querySelector('#hours')
+    let hours2 = 20
+    if (minutes2 === 1) {
+        hours2--
+        hours.innerHTML = hours2
+    }
+}, 1)
 
-// let hours = document.querySelector('#hours')
-// let days = document.querySelector('#days')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // setInterval(() => {
 //     if (+hours.innerHTML != 1) {
-//         hours.innerHTML = +hours.innerHTML - 1; 
+//         hours.innerHTML = +hours.innerHTML - 1;
 //     } else if (days.innerHTML == 0 && +hours.innerHTML != 0) {
 //         hours.innerHTML = +hours.innerHTML - 1;
 //     } else {
 //         hours.innerHTML = 24
 //     }
 // }, 1000)
-
