@@ -958,3 +958,6 @@ form button {
 		opacity: 1;
 	}
 }
+.hider{
+	display: none;
+}

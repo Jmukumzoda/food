@@ -1,62 +1,17 @@
 let tab = document.querySelectorAll('.tabcontent')
 let next2 = document.querySelectorAll('.tabheader__item')
+tab.forEach(item => item.classList.add('fade1', 'hide'))
+tab[0].classList.remove('hide')
 let slideIndex1 = 0
-function show(m) {
-    if (m > tab.length - 1) {
-        slideIndex1 = 0}
-    tab.forEach(slide => slide.classList.add('tab'))
-    tab[slideIndex1].classList.remove('tab')
-}
-show()
-next2.forEach(slnext => {
-    slnext.onclick = () => {
-        slideIndex1++
-        show(slideIndex1)
+next2.forEach((btn, index) => {
+    btn.onclick = () => {
+        tab[slideIndex1].classList.add('hide')
+        tab[index].classList.remove('hide')
+        next2[slideIndex1].classList.remove('tabheader__item_active')
+        btn.classList.add('tabheader__item_active')
+        slideIndex1 = index
     }
 })
-let fir = document.querySelector('.tabheader__item_active')
-fir.onclick = () => {
-    if (fir.classList.add('tabheader__item_active')) { }
-    if (onclic.classList.remove('tabheader__1h')) { }
-    if (fir.classList.add('tabheader__item_active')) { }
-    if (onclic2.classList.remove('tabheader__1h')) { }
-    if (fir.classList.add('tabheader__item_active')) { }
-    if (onclic3.classList.remove('tabheader__1h')) { }
-    fir.classList.add('tabheader__item_active')
-    slideIndex1--
-    show(slideIndex1)
-}
-let onclic = document.querySelector('.iten')
-onclic.onclick = () => {
-    if (fir.classList.remove('tabheader__item_active')) { }
-    if (onclic2.classList.remove('tabheader__1h')) { }
-    if (onclic.classList.add('tabheader__1h')) { }
-    if (onclic3.classList.remove('tabheader__1h')) { }
-    slideIndex1++
-    show(slideIndex1)
-}
-let onclic2 = document.querySelector('.item1')
-onclic2.onclick = () => {
-    if (fir.classList.remove('tabheader__item_active')) { }
-    if (onclic2.classList.remove('tabheader__1h')) { }
-    if (onclic2.classList.add('tabheader__1h')) { }
-    if (onclic3.classList.remove('tabheader__1h')) { }
-    onclic.classList.remove('tabheader__1h')
-    onclic2.classList.add('tabheader__1h')
-    slideIndex1++
-    show(slideIndex1)
-}
-
-let onclic3 = document.querySelector('.item2')
-onclic3.onclick = () => {
-    if (fir.classList.remove('tabheader__item_active')) {}
-    if (onclic2.classList.remove('tabheader__1h')) { }
-    if (onclic.classList.remove('tabheader__1h')) { }
-    onclic2.classList.remove('tabheader__1h')
-    onclic3.classList.add('tabheader__1h')
-    slideIndex1++
-    show(slideIndex1)
-}
 let btn = document.querySelectorAll('.btn')
 let exet2 = document.querySelector('.mod3_img')
 let modal = document.querySelector('.modaall3')
@@ -76,8 +31,8 @@ let count = 2
 let slideIndex = 0
 
 function slideShow(n) {
-    if (n > slides.length - 1) {slideIndex = 0}
-    if (n < 0) {slideIndex = slides.length - 1}
+    if (n > slides.length - 1) { slideIndex = 0 }
+    if (n < 0) { slideIndex = slides.length - 1 }
     slides.forEach(slide => slide.classList.add('fade', 'hide'))
     slides[slideIndex].classList.remove('hide')
 }
@@ -86,7 +41,7 @@ next.onclick = () => {
     slideIndex++
     slideShow(slideIndex)
     clic.innerHTML = count++
-    if (count === 5) {count = 1}
+    if (count === 5) { count = 1 }
 }
 let minus = 5
 prev.onclick = () => {
@@ -94,7 +49,8 @@ prev.onclick = () => {
     slideShow(slideIndex)
     if (minus > 1) {
         minus--
-        clic.innerHTML = minus}
+        clic.innerHTML = minus
+    }
 }
 let inps = document.querySelectorAll('input')
 let form = document.forms.login
@@ -104,22 +60,23 @@ let patterns = {
     phone: /^\+998([- ])?(90|91|93|94|95|98|99|33|97|71)([- ])?(\d{3})([- ])?(\d{2})([- ])?(\d{2})$/g,
     email: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/ig
 }
-inps.forEach(inp => {
-inp.onkeyup = () => {
-        if (patterns[inp.name].test(inp.value)) {
-            inp.parentElement.classList.remove('error-field')
-        } else {
-            inp.parentElement.classList.add('error-field')
-        }
-    }
-})
+// inps.forEach(inp => {
+//     inp.onkeyup = () => {
+//         if (patterns[inp.name].test(inp.value)) {
+//             inp.parentElement.classList.remove('error-field')
+//         } else {
+//             inp.parentElement.classList.add('error-field')
+//         }
+//     }
+// })
 form.onsubmit = (event) => {
     event.preventDefault();
     let error = false
     inps.forEach(inp => {
         if (inp.parentElement.classList.contains('error-field')) {
             error = true
-        }})
+        }
+    })
     if (error) {
         alert('error')
     } else {
@@ -135,6 +92,79 @@ function submit() {
     let input = document.getElementById("name").value;
     if (input === "") {
         alert("Что ты вёл там ничего нету");
-        return fm;}
+        return fm;
+    }
     console.log(user);
 }
+
+
+let calkulator = document.querySelectorAll('#gender .calculating__choose-item')
+let colorr = document.querySelectorAll('.calculating__choose_big  .calculating__choose-item_active')
+let ipns = document.querySelectorAll('.calculating__choose_medium input')
+let reselt = document.querySelector('#result')
+let userdate = {
+    gender: "women"
+}
+calkulator.forEach(input => {
+    input.onclick = () => {
+        calkulator.forEach(el => el.classList.remove('calculating__choose-item_active'))
+        input.classList.add('calculating__choose-item_active')
+
+        userdate.gender = input.getAttribute('data-g')
+    }
+})
+ipns.forEach(ipn => {
+    ipn.onkeyup = () => {
+        userdate[ipn.id] = ipn.value
+    }
+})
+colorr.forEach(input => {
+    input.onclick = () => {
+        colorr.forEach(el => el.classList.remove('calculating__choose-item_active'))
+        input.classList.add('calculating__choose-item_active')
+        let kfc = +input.getAttribute('data-activ')
+        if (userdate.gender === 'woman') {
+            let result = 655.1 + (9.563 * userdate.weight) + (1.85 * userdate.height) - (4.676 * userdate.age)
+            reselt.innerHTML = Math.round(result * kfc)
+        } else {
+            let result = 66.5 + (13.75 * userdate.weight) + (5.003 * userdate.height) - (6.775 * userdate.age)
+            reselt.innerHTML = Math.round(result * kfc)
+        }
+    }
+})
+let second = document.querySelector('#seconds')
+let second2 = 20
+setInterval(() => {
+    second2--
+    second.innerHTML = second2
+    if (second2 === 0) {
+        second2 = 60
+    }
+
+}, 1000)
+
+
+let minutes = document.querySelector('#minutes')
+let minutes2 = 56
+setInterval(() => {
+    if (second2 === 1) {
+        minutes2--
+        minutes.innerHTML = minutes2
+    }
+    if (minutes2 === 0) {
+        minutes2 = 60
+    }
+}, 1000)
+
+// let hours = document.querySelector('#hours')
+// let days = document.querySelector('#days')
+// setInterval(() => {
+//     if (+hours.innerHTML != 1) {
+//         hours.innerHTML = +hours.innerHTML - 1; 
+//     } else if (days.innerHTML == 0 && +hours.innerHTML != 0) {
+//         hours.innerHTML = +hours.innerHTML - 1;
+//     } else {
+//         hours.innerHTML = 24
+//     }
+// }, 1000)
+

@@ -100,9 +100,9 @@
                     <h3>Выберите стиль питания</h3>
                     <div class="tabheader__items">
                         <div class="tabheader__item tabheader__item_active">Фитнес</div>
-                        <div class="tabheader__item iten">Премиум</div>
-                        <div class="tabheader__item item1">Постное</div>
-                        <div class="tabheader__item item2">Сбалансированное</div>
+                        <div class="tabheader__item item">Премиум</div>
+                        <div class="tabheader__item item">Постное</div>
+                        <div class="tabheader__item item">Сбалансированное</div>
                     </div>
                 </div>
             </div>
@@ -183,8 +183,8 @@
                     Ваш пол
                 </div>
                 <div class="calculating__choose" id="gender">
-                    <div class="calculating__choose-item calculating__choose-item_active">Женщина</div>
-                    <div class="calculating__choose-item">Мужчина</div>
+                    <div data-g="woman" class="calculating__choose-item calculating__choose-item_active">Женщина</div>
+                    <div data-g="man" class="calculating__choose-item">Мужчина</div>
                 </div>
 
                 <div class="calculating__subtitle">
@@ -200,11 +200,10 @@
                     Выберите вашу физическая активность
                 </div>
                 <div class="calculating__choose calculating__choose_big">
-                    <div id="low" class="calculating__choose-item">Низкая активность </div>
-                    <div id="small" class="calculating__choose-item calculating__choose-item_active">Невысокая
-                        активность</div>
-                    <div id="medium" class="calculating__choose-item">Умеренная активность</div>
-                    <div id="high" class="calculating__choose-item">Высокая активность</div>
+                    <div data-activ="1.2" class="calculating__choose-item">Низкая активность </div>
+                    <div data-activ="1.375" class="calculating__choose-item calculating__choose-item_active">Невысокаяактивность</div>
+                    <div data-activ="1.55" class="calculating__choose-item">Умеренная активность</div>
+                    <div data-activ="1.7" class="calculating__choose-item">Высокая активность</div>
                 </div>
 
                 <div class="calculating__divider"></div>
@@ -214,7 +213,7 @@
                         Ваша суточная норма калорий:
                     </div>
                     <div class="calculating__result">
-                        <span>2700</span> ккал
+                        <span id="result">2700</span> ккал
                     </div>
                 </div>
             </div>
