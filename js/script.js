@@ -60,15 +60,15 @@ let patterns = {
     phone: /^\+998([- ])?(90|91|93|94|95|98|99|33|97|71)([- ])?(\d{3})([- ])?(\d{2})([- ])?(\d{2})$/g,
     email: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/ig
 }
-// inps.forEach(inp => {
-//     inp.onkeyup = () => {
-//         if (patterns[inp.name].test(inp.value)) {
-//             inp.parentElement.classList.remove('error-field')
-//         } else {
-//             inp.parentElement.classList.add('error-field')
-//         }
-//     }
-// })
+inps.forEach(inp => {
+    inp.onkeyup = () => {
+        if (patterns[inp.name].test(inp.value)) {
+            inp.parentElement.classList.remove('error-field')
+        } else {
+            inp.parentElement.classList.add('error-field')
+        }
+    }
+})
 form.onsubmit = (event) => {
     event.preventDefault();
     let error = false
@@ -96,7 +96,36 @@ function submit() {
     }
     console.log(user);
 }
-
+let inps2 = document.querySelectorAll('.order__input')
+let form2 = document.forms.order__form
+let patterns2 = {
+    name: /^[a-z ,.'-]+$/i,
+    surname: /^[a-z ,.'-]+$/i,
+    phone: /^\+998([- ])?(90|91|93|94|95|98|99|33|97|71)([- ])?(\d{3})([- ])?(\d{2})([- ])?(\d{2})$/g,
+    email: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/ig
+}
+inps2.forEach(inp => {
+    inp.onkeyup = () => {
+        if (patterns2[inp.name].test(inp.value)) {
+            inp.parentElement.classList.remove('error-field')
+        } else {
+            inp.parentElement.classList.add('error-field')
+        }
+    }
+})
+function submit() {
+    let user = {}
+    let fm = new FormData(form)
+    fm.forEach((value, key) => {
+        user[key] = value
+    })
+    let input = document.getElementById("name").value;
+    if (input === "") {
+        alert("Что ты вёл там ничего нету");
+        return fm;
+    }
+    console.log(user);
+}
 
 let calkulator = document.querySelectorAll('#gender .calculating__choose-item')
 let colorr = document.querySelectorAll('.calculating__choose_big  .calculating__choose-item_active')
@@ -109,7 +138,6 @@ calkulator.forEach(input => {
     input.onclick = () => {
         calkulator.forEach(el => el.classList.remove('calculating__choose-item_active'))
         input.classList.add('calculating__choose-item_active')
-
         userdate.gender = input.getAttribute('data-g')
     }
 })
@@ -132,61 +160,56 @@ colorr.forEach(input => {
         }
     }
 })
-let second = document.querySelector('#seconds')
-let second2 = 20
+let second = document.querySelector('#seconds');
+let second2 = 20;
 setInterval(() => {
-    second2--
-    second.innerHTML = second2
+    second2--;
+    second.innerHTML = second2;
     if (second2 === 0) {
-        second2 = 60
+        second2 = 60;
     }
+}, 1000);
 
-}, 1)
-
-
-let minutes = document.querySelector('#minutes')
-let minutes2 = 56
+let minutes = document.querySelector('#minutes');
+let minutes2 = 56;
+let hours = document.querySelector('#hours');
+let hours2 = 1;
+let days = document.querySelector('#days');
+let days2 = 12;
 setInterval(() => {
     if (second2 === 1) {
-        minutes2--
-        minutes.innerHTML = minutes2
+        minutes2--;
+        minutes.innerHTML = minutes2;
+        if (minutes2 === 0) {
+            minutes2 = 60;
+            hours2--;
+            hours.innerHTML = hours2;
+            if (hours2 === 0) {
+                days2--;
+                days.innerHTML = days2;
+                hours2 = 24;
+                if (days2 === 0) {
+                    var duration = 19 * 1;
+                    var animationEnd = Date.now() + duration;
+                    var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+                    function randomInRange(min, max) {
+                        return Math.random() * (max - min) + min;
+                    }
+
+                    var interval = setInterval(function () {
+                        var timeLeft = animationEnd - Date.now();
+
+                        if (timeLeft <= 0) {
+                            return clearInterval(interval);
+                        }
+
+                        var particleCount = 50 * (timeLeft / duration);
+                        // since particles fall down, start a bit higher than random
+                        confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                        confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+                    }, 250);
+                }
+            }
+        }
     }
-    if (minutes2 === 0) {
-        minutes2 = 60
-    }
-    let hours = document.querySelector('#hours')
-    let hours2 = 20
-    if (minutes2 === 1) {
-        hours2--
-        hours.innerHTML = hours2
-    }
-}, 1)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// setInterval(() => {
-//     if (+hours.innerHTML != 1) {
-//         hours.innerHTML = +hours.innerHTML - 1;
-//     } else if (days.innerHTML == 0 && +hours.innerHTML != 0) {
-//         hours.innerHTML = +hours.innerHTML - 1;
-//     } else {
-//         hours.innerHTML = 24
-//     }
-// }, 1000)
+}, 1000);
